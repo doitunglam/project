@@ -56,7 +56,7 @@ style="background: radial-gradient(circle at 10% 20%, rgb(255, 200, 124) 0%, rgb
             <input type="text" class="h-12 rounded-full bg-yellow-400 w-full border-solid border-2 border-orange-600 mb-2">
             <input type="password" class="h-12 rounded-full bg-yellow-400 w-full border-solid border-2 border-orange-600">
         </form>
-        <a href="https://www.w3schools.com" class="text-base no-underline font-welcome align-self-end">Quên mật khẩu</a>
+        <a href="{{ route('password.request') }}" class="text-base no-underline font-welcome align-self-end">Quên mật khẩu</a>
         <button class="h-12 rounded-full text-3xl bg-yellow-400">Đăng nhập</button>
         <p class="text-base no-underline self-center m-0">Hoặc</p>
         <div class="flex justify-between">
