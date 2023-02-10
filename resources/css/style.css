@@ -16,18 +16,15 @@ body{
     width: calc(25*1.7rem) ;
     top: calc(50vh - 12.5rem);
     right: 10vh;
-    background-image: url("/assets/bg-image.png");
     background-size: contain;
     background-repeat: no-repeat;
 }
 
 .sign-in-div {
     position: absolute;
-    left: 20vh;
-    width: 40vw;
     height: 70vh;
     display: flex;
-    flex: 0 0 10rem;
+    flex: 0 0 0;
     flex-flow: column;
     top: 15vh;
     font-family: 'Montserrat', sans-serif;
