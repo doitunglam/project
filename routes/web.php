@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,12 +20,23 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('dashboard',["user"=>Auth::user()]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/campaign', function () {
     return view('campaign');
 })->middleware(['auth', 'verified'])->name('campaign');
+
+Route::get('/payment', function () {
+    return view('payment');
+})->middleware(['auth', 'verified'])->name('payment');
+
+Route::get('/report', function () {
+    return view('report');
+})->middleware(['auth', 'verified'])->name('report');
+Route::get('/support', function () {
+    return view('support');
+})->middleware(['auth', 'verified'])->name('support');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -32,4 +44,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
