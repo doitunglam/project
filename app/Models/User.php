@@ -25,7 +25,10 @@ class User extends Authenticatable
         'phone',
         'email',
         'refcodesource',
-        'refcount'
+        'refcount',
+        'social_id',
+        'social_type'
+
     ];
 
     /**

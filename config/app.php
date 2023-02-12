@@ -200,6 +200,11 @@ return [
          *
          */
         Barryvdh\Debugbar\ServiceProvider::class,
+        /*
+         * Social Media login
+         * */
+        Laravel\Socialite\SocialiteServiceProvider::class,
+
 
     ],
 
@@ -217,6 +222,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ])->toArray(),
 
 

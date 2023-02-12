@@ -1,13 +1,28 @@
 <x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
         @csrf
-        <!-- Name -->
-        <div class="mt-4">
-            <x-input-label for="Họ tên" :value="__('Họ Tên')"/>
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
-                          autofocus autocomplete="name"/>
-            <x-input-error :messages="$errors->get('name')" class="mt-2"/>
-        </div>
+        Bạn đã đăng nhập từ {{$social_type}}. Để tiếp tục, vui lòng cập nhật thông tin
+
+        <x-text-input id="social_id" class="block mt-1 w-full hidden" readonly type="text" name="social_id" value="{{$social_id}}" required
+                      autofocus/>
+
+        @if($name)
+            <!-- Name -->
+            <div class="mt-4">
+                <x-input-label for="Họ tên" :value="__('Họ Tên')"/>
+                <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" value="{{$name}}" required
+                              autofocus autocomplete="name"/>
+                <x-input-error :messages="$errors->get('name')" class="mt-2"/>
+            </div>
+            @php($name=null)
+        @else
+            <div class="mt-4">
+                <x-input-label for="Họ tên" :value="__('Họ Tên')"/>
+                <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
+                              autofocus autocomplete="name"/>
+                <x-input-error :messages="$errors->get('name')" class="mt-2"/>
+            </div>
+        @endif
 
         <!-- Phone Number -->
         <div class="mt-4">
@@ -18,12 +33,24 @@
         </div>
 
         <!-- Email -->
-        <div class="mt-4">
-            <x-input-label for="Email" :value="__('Email')"/>
-            <x-text-input id="email" class="block mt-1 w-full" type="text" name="email" :value="old('email')" required
-                          autofocus autocomplete="email"/>
-            <x-input-error :messages="$errors->get('email')" class="mt-2"/>
-        </div>
+        @if($email)
+            <div class="mt-4">
+                <x-input-label for="Email" :value="__('Email')"/>
+                <x-text-input id="email" class="block mt-1 w-full" type="text" name="email" value="{{$email}}"
+                              required
+                              autofocus autocomplete="email"/>
+                <x-input-error :messages="$errors->get('email')" class="mt-2"/>
+            </div>
+            @php($email=null)
+        @else
+            <div class="mt-4">
+                <x-input-label for="Email" :value="__('Email')"/>
+                <x-text-input id="email" class="block mt-1 w-full" type="text" name="email" :value="old('email')"
+                              required
+                              autofocus autocomplete="email"/>
+                <x-input-error :messages="$errors->get('email')" class="mt-2"/>
+            </div>
+        @endif
 
 
         <!-- Username -->
@@ -62,11 +89,12 @@
         @if($refcodesource != null)
             <div class="mt-4">
                 <x-input-label for="Mã Giới Thiệu" :value="__('Mã Giới Thiệu')"/>
-                <x-text-input id="refcode" class="block mt-1 w-full" type="text" name="refcode" value="{{$refcodesource}}"
+                <x-text-input id="refcode" class="block mt-1 w-full" type="text" name="refcode"
+                              value="{{$refcodesource}}"
                               required autofocus autocomplete="refcode"/>
                 <x-input-error :messages="$errors->get('refcode')" class="mt-2"/>
             </div>
-        @php($refcodesource = null)
+            @php($refcodesource = null)
         @else
             <div class="mt-4">
                 <x-input-label for="Mã Giới Thiệu" :value="__('Mã Giới Thiệu')"/>

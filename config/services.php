@@ -31,4 +31,16 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'facebook' => [
+        'client_id' => '1043339633290327', //USE FROM FACEBOOK DEVELOPER ACCOUNT
+        'client_secret' => '557a1eb0be82400b8da92bdad6d4c2f3', //USE FROM FACEBOOK DEVELOPER ACCOUNT
+        //TODO: change redirect link
+        'redirect' => env('APP_URL').'/callback/facebook/'
+    ],
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('APP_URL').'/callback/google/',
+    ],
+
 ];

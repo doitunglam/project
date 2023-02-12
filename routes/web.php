@@ -1,8 +1,14 @@
 <?php
 
+use App\Http\Controllers\FacebookSocialiteController;
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\FaceBookController;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +23,8 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard',["user"=>Auth::user()]);
@@ -43,5 +50,19 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// Facebook Login URL
+
+Route::get('auth/facebook', [FacebookSocialiteController::class, 'redirectToFB'])->name('auth.facebook');
+Route::get('callback/facebook', [FacebookSocialiteController::class, 'handleCallback']);
+//Route::get('callback/facebook',function () {
+//    return view('welcome');
+//});
+
+Route::controller(GoogleController::class)->group(function(){
+    Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
+    Route::get('callback/google', 'handleGoogleCallback');
+});
+
 
 require __DIR__ . '/auth.php';

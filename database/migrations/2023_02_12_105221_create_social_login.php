@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('social_login', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('social_users', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('social_id');
+            $table->string('social_type');
+            $table->time('updated_at');
+            $table->time('created_at');
         });
     }
 
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('social_login');
+        Schema::dropIfExists('social_users');
     }
 };
