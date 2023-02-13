@@ -5,8 +5,8 @@ use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\FaceBookController;
-
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CampaignController;
 
 
 
@@ -26,13 +26,15 @@ Route::get('/', function () {
 })->name('home');
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard',["user"=>Auth::user()]);
-})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/campaign', function () {
-    return view('campaign');
-})->middleware(['auth', 'verified'])->name('campaign');
+Route::get('/dashboard',[DashboardController::class,'get'])
+    ->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/campaign',[CampaignController::class,'get'])
+    ->middleware('auth','verified')->name('campaign');
+
+Route::post('/campaign',[CampaignController::class,'create'])
+    ->middleware('auth','verified')->name('campaign.create');
 
 Route::get('/payment', function () {
     return view('payment');

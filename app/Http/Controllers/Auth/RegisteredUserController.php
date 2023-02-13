@@ -47,7 +47,7 @@ class RegisteredUserController extends Controller
             'refcode' => ['required', 'string', 'min:5', 'max:5'],
             'phone' => ['required', 'regex:/^(0)(\d{9})*/', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'email' => ['required', 'email'],
+            'email' => ['email'],
             'social_type' => ['string', 'max:255']
 
         ]);

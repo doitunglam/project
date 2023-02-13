@@ -27,7 +27,8 @@ class User extends Authenticatable
         'refcodesource',
         'refcount',
         'social_id',
-        'social_type'
+        'social_type',
+        'is_advertiser'
 
     ];
 

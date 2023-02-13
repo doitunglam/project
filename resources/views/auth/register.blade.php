@@ -1,8 +1,9 @@
 <x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
         @csrf
+        @if($social_type)
         Bạn đã đăng nhập từ {{$social_type}}. Để tiếp tục, vui lòng cập nhật thông tin
-
+        @endif
         <x-text-input id="social_id" class="block mt-1 w-full hidden" readonly type="text" name="social_id" value="{{$social_id}}" required
                       autofocus/>
 
@@ -112,7 +113,7 @@
             </a>
 
             <x-primary-button class="ml-4">
-                {{ __('Đăng nhập') }}
+                {{ __('Đăng ký') }}
             </x-primary-button>
         </div>
     </form>
