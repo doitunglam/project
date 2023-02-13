@@ -9,7 +9,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CampaignController;
 
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,20 +20,24 @@ use App\Http\Controllers\CampaignController;
 |
 */
 
-Route::get('/', function () {
+
+Route::get('/welcome', function () {
     return view('welcome');
+});
+
+Route::get('//', function () {
+    return redirect('/welcome');
 })->name('home');
 
 
-
-Route::get('/dashboard',[DashboardController::class,'get'])
+Route::get('/dashboard', [DashboardController::class, 'get'])
     ->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/campaign',[CampaignController::class,'get'])
-    ->middleware('auth','verified')->name('campaign');
+Route::get('/campaign', [CampaignController::class, 'get'])
+    ->middleware('auth', 'verified')->name('campaign');
 
-Route::post('/campaign',[CampaignController::class,'create'])
-    ->middleware('auth','verified')->name('campaign.create');
+Route::post('/campaign', [CampaignController::class, 'create'])
+    ->middleware('auth', 'verified')->name('campaign.create');
 
 Route::get('/payment', function () {
     return view('payment');
@@ -61,7 +64,7 @@ Route::get('callback/facebook', [FacebookSocialiteController::class, 'handleCall
 //    return view('welcome');
 //});
 
-Route::controller(GoogleController::class)->group(function(){
+Route::controller(GoogleController::class)->group(function () {
     Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
     Route::get('callback/google', 'handleGoogleCallback');
 });
