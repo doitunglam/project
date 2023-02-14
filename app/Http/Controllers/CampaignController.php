@@ -37,7 +37,7 @@ class CampaignController extends Controller
 //                    if ($campaign->creator_id != $id) return reje
 //                }
 //            });
-            return view('advertiser.campaign', ["user" => $user, "campaigns" =>implode(',',$campaigns_content) ]);
+            return view('advertiser.campaign', ["user" => $user, "campaigns" =>json_encode($campaigns_content) ]);
 
         }
         return view('campaign');
@@ -45,12 +45,29 @@ class CampaignController extends Controller
 
     public function create(Request $request)
     {
+        $request->commission = floatval($request->commisson);
         $request->validate([
-            'textcontent' => ['string', 'max:255']
+            'title'=>['string','max:255'],
+            'info'=>['string','max:255'],
+            'image' => 'required|image|mimes:png,jpg,jpeg,gif|max:8096',
+            'url'=>['url'],
+            'criteria'=>['string','max:1500'],
+            'commission'=>['decimal:0,15']
         ]);
+
+        $imageName = time().'.'.$request->image->extension();
+        // Public Folder
+        $request->image->move(public_path('images'), $imageName);
+
         $campaign = new Campaign;
-        $campaign->textcontent = $request->textcontent;
+        $campaign->title = $request->title;
         $campaign->creator_id = Auth::user()->id;
+        $campaign->image = $imageName;
+        $campaign->url = $request->url;
+        $campaign->info = $request->info;
+        $campaign->criteria = $request->criteria;
+        $campaign->commission = $request->commission;
+
         $campaign->save();
 
         return redirect('campaign');

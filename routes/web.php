@@ -64,10 +64,10 @@ Route::get('callback/facebook', [FacebookSocialiteController::class, 'handleCall
 //    return view('welcome');
 //});
 
+//Google Login URL
 Route::controller(GoogleController::class)->group(function () {
     Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
     Route::get('callback/google', 'handleGoogleCallback');
 });
-
 
 require __DIR__ . '/auth.php';

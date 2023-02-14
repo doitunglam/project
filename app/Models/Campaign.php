@@ -12,8 +12,13 @@ class Campaign extends Model
     use HasUuids;
 
     protected $fillable = [
-        'textcontent'=>'Content',
-        'creator_id'
+        'title'=>'Title',
+        'image'=>'campaign',
+        'creator_id',
+        'info',
+        'url',
+        'criteria'=>'Criteria',
+        'commission'
     ];
 
 }
