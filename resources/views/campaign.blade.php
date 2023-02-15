@@ -1,5 +1,7 @@
+@props([$campaigns=>null])
+@php($campaign_array = json_decode($campaigns))
 <x-app-layout>
-    <x-slot>
+    <x-slot name="nav">
         @include('layouts.navigation')
     </x-slot>
     <x-slot name="header">
@@ -16,6 +18,14 @@
             </div>
         </div>
     </div>
+
+    <x-campaign.render-container>
+        @foreach($campaign_array as $campaign)
+            @php($campaign = json_encode($campaign))
+            <x-publisher.campaign-cell :campaign="$campaign"></x-publisher.campaign-cell>
+        @endforeach
+    </x-campaign.render-container>
+
 
 
 </x-app-layout>

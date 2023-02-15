@@ -1,10 +1,10 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\campaign;
 
 use Illuminate\View\Component;
 
-class text-area extends Component
+class textContent extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class text-area extends Component
      */
     public function render()
     {
-        return view('components.text-area');
+        return view('components.campaign.text-content');
     }
 }

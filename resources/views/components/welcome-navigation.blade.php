@@ -20,7 +20,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center pl-2">
                     <a href="{{ route('home') }}">
-                        <text>MCCANNASIA.COM</text>
+                        <text>{{__('MCCANNASIA.COM')}}</text>
                     </a>
                 </div>
 
@@ -47,17 +47,17 @@
             </div>
             <div class="top-0 align-self-end self-stretch flex flex-row justify-center align-content-center">
                 <form action={{'login'}} METHOD="get">
-                    <button class="font-sans bg-transparent h-full rounded-full self-center text-center indent-0">Đăng nhập
+                    <button class="font-sans bg-transparent h-full rounded-full self-center text-center indent-0">
+                        {{__('Login')}}
                     </button>
                 </form>
                 <form action={{'register'}} METHOD="get">
                     <div class="h-full flex">
                         <button
                             class="font-sans h-9 self-center justify-center rounded-full text-center  pl-4 pr-4 indent-0 bg-yellow-400 ml-2">
-                            Đăng ký
+                            {{__('Register')}}
                         </button>
                     </div>
-
                 </form>
             </div>
         </div>
@@ -76,6 +76,5 @@
                 {{ __('About Us') }}
             </x-responsive-nav-link>
         </div>
-
     </div>
 </nav>

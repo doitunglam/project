@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="nav">
-        <x-advetiser-navigation></x-advetiser-navigation>
+        <x-advertiser-navigation></x-advertiser-navigation>
     </x-slot>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">

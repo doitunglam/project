@@ -1,19 +1,22 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\publisher;
 
 use Illuminate\View\Component;
 
-class campaign.input-form extends Component
+class campaignCell extends Component
 {
+
+    public $campaign;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($campaign)
     {
         //
+        $this->campaign = $campaign;
     }
 
     /**
@@ -23,6 +26,6 @@ class campaign.input-form extends Component
      */
     public function render()
     {
-        return view('components.campaign.input-form');
+        return view('components.publisher.campaign-cell');
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\campaign;
 
 use Illuminate\View\Component;
 
-class campaign.render-container extends Component
+class renderCell extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class campaign.render-container extends Component
      */
     public function render()
     {
-        return view('components.campaign.render-container');
+        return view('components.campaign.render-cell');
     }
 }

@@ -1,6 +1,7 @@
+@props([$campaigns=>null])
 <x-app-layout>
     <x-slot name="nav">
-        <x-advetiser-navigation></x-advetiser-navigation>
+        <x-advertiser-navigation></x-advertiser-navigation>
     </x-slot>
 
     @php($campaign_array = json_decode($campaigns))
@@ -10,12 +11,13 @@
         {{ __('Advetiser Campaign') }}
     </x-slot>
 
-    <x-campaign.input-form>
+    <x-campaign.input-form id="input-form" class="hidden">
     </x-campaign.input-form>
 
     <x-campaign.render-container>
         @foreach($campaign_array as $campaign)
-            <div>{{$campaign->created_at}}</div>
+            @php($campaign = json_encode($campaign))
+            <x-publisher.campaign-cell :campaign="$campaign"></x-publisher.campaign-cell>
         @endforeach
     </x-campaign.render-container>
 

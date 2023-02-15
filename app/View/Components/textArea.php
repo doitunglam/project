@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class campaign.render-container.php extends Component
+class textArea extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class campaign.render-container.php extends Component
      */
     public function render()
     {
-        return view('components.campaign.render-container.php');
+        return view('components.text-area');
     }
 }

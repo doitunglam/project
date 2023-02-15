@@ -11,13 +11,16 @@ class Campaign extends Model
     use HasFactory;
     use HasUuids;
 
+
+
+
     protected $fillable = [
-        'title'=>'Title',
-        'image'=>'campaign',
+        'title',
+        'image'=>'none',
         'creator_id',
-        'info',
+        'info'=>'none',
         'url',
-        'criteria'=>'Criteria',
+        'criteria'=>'none',
         'commission'
     ];
 

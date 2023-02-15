@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class advetiser-navigation extends Component
+class welcomeNavigation extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class advetiser-navigation extends Component
      */
     public function render()
     {
-        return view('components.advetiser-navigation');
+        return view('components.welcome-navigation');
     }
 }

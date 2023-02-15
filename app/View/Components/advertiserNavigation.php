@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class welcome-navigation extends Component
+class advertiserNavigation extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class welcome-navigation extends Component
      */
     public function render()
     {
-        return view('components.welcome-navigation');
+        return view('components.advertiser-navigation');
     }
 }

@@ -82,7 +82,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'vi',
 
     /*
     |--------------------------------------------------------------------------
@@ -204,6 +204,7 @@ return [
          * Social Media login
          * */
         Laravel\Socialite\SocialiteServiceProvider::class,
+
 
 
     ],

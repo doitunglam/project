@@ -25,10 +25,7 @@ class CampaignController extends Controller
             $campaigns = Campaign::where('creator_id', $id)->get()->sortByDesc('created_at');
             $campaigns_content = array();
             foreach ($campaigns as $campaign) {
-                $campaign_content = collect(['created_at' => $campaign->created_at,
-                    'textcontent' => $campaign->textcontent,
-                    'modified_at' => $campaign->modified_at]);
-                $campaigns_content[] = $campaign_content;
+                $campaigns_content[] = $campaign;
             }
             //TODO: Chunk processing
 //            Campaign::chunk(20, function ($campaigns) use ($id) {
@@ -37,36 +34,43 @@ class CampaignController extends Controller
 //                    if ($campaign->creator_id != $id) return reje
 //                }
 //            });
-            return view('advertiser.campaign', ["user" => $user, "campaigns" =>json_encode($campaigns_content) ]);
-
+            return view('advertiser.campaign', ["user" => $user, "campaigns" => json_encode($campaigns_content)]);
         }
-        return view('campaign');
+        $campaigns = Campaign::all()->sortByDesc('created_at');
+
+        return view('campaign',["campaigns" => json_encode($campaigns)]);
     }
 
     public function create(Request $request)
     {
         $request->commission = floatval($request->commisson);
         $request->validate([
-            'title'=>['string','max:255'],
-            'info'=>['string','max:255'],
-            'image' => 'required|image|mimes:png,jpg,jpeg,gif|max:8096',
-            'url'=>['url'],
-            'criteria'=>['string','max:1500'],
-            'commission'=>['decimal:0,15']
+            'title' => ['required', 'string', 'max:255'],
+            'info' => ['nullable', 'string', 'max:255'],
+            'image' => 'nullable|image|mimes:png,jpg,jpeg,gif|max:8096',
+            'url' => ['required', 'url'],
+            'criteria' => ['nullable', 'string', 'max:1500'],
+            'commission' => ['required', 'decimal:0,15']
         ]);
-
-        $imageName = time().'.'.$request->image->extension();
-        // Public Folder
-        $request->image->move(public_path('images'), $imageName);
-
         $campaign = new Campaign;
+
+        if ($request->image) {
+            $imageName = time() . '.' . $request->image->extension();
+            // Public Folder
+            $request->image->move(public_path('images'), $imageName);
+            $campaign->image = $imageName;
+        } else
+            $campaign->image = 'none.jpg';
         $campaign->title = $request->title;
         $campaign->creator_id = Auth::user()->id;
-        $campaign->image = $imageName;
         $campaign->url = $request->url;
-        $campaign->info = $request->info;
-        $campaign->criteria = $request->criteria;
-        $campaign->commission = $request->commission;
+        if ($request->info)
+            $campaign->info = $request->info;
+        else $campaign->info = 'none';
+        if ($request->criteria)
+            $campaign->criteria = $request->criteria;
+        else $campaign->criteria = 'none';
+        $campaign->commission =$request->get('commission');
 
         $campaign->save();
 
