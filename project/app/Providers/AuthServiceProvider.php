@@ -2,7 +2,13 @@
 
 namespace App\Providers;
 
+use App\Models\Chidoan;
+use App\Models\Chucvu;
+use App\Models\Doanphi;
 use App\Models\Doanvien;
+use App\Policies\API\ChidoanPolicy;
+use App\Policies\API\ChucvuPolicy;
+use App\Policies\API\DoanphiPolicy;
 use App\Policies\API\DoanvienPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
@@ -16,7 +22,11 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
-        Doanvien::class => DoanvienPolicy::class
+        Doanvien::class => DoanvienPolicy::class,
+        Chidoan::class => ChidoanPolicy::class,
+        Chucvu::class => ChucvuPolicy::class,
+        Doanphi::class => DoanphiPolicy::class
+
     ];
 
     /**

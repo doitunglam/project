@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Chucvu
- * 
+ *
  * @property string $MaChucVu
  * @property string $TenChucVu
  *
@@ -19,11 +19,12 @@ use Illuminate\Database\Eloquent\Model;
 class Chucvu extends Model
 {
 	protected $table = 'chucvu';
+	protected $primaryKey = 'MaChucVu';
 	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $fillable = [
-		'MaChucVu',
+        'MaChucVu',
 		'TenChucVu'
 	];
 }

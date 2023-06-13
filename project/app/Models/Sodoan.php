@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Sodoan
- * 
+ *
  * @property string $MaSD
  * @property string $MaDV
  * @property int $SoLanKhenThuong

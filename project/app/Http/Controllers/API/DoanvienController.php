@@ -48,6 +48,10 @@ class DoanvienController extends BaseController
         //
         $input = $request->all();
 
+        if (\Auth::user()->cannot('create', Doanvien::class)) {
+            return $this->sendResponse(null, 'Khong du quyen!');
+        }
+
         $validator = Validator::make($input, [
             'MaDV' => 'required',
             'HoDV' => 'required',
@@ -79,9 +83,14 @@ class DoanvienController extends BaseController
      */
     public function show($id)
     {
+
         $doanvien = Doanvien::find($id);
         if (is_null($doanvien)) {
             return $this->sendError('Khong tim thay doan vien.');
+        }
+
+        if (\Auth::user()->cannot('view', $doanvien)) {
+            return $this->sendResponse(null, 'Khong du quyen!');
         }
 
         return $this->sendResponse(new Response($doanvien), 'Hien thi doan vien thanh cong.');
@@ -109,6 +118,10 @@ class DoanvienController extends BaseController
     {
         //
         $input = $request->all();
+
+        if (\Auth::user()->cannot('update', $doanvien)) {
+            return $this->sendResponse(null, 'Khong du quyen!');
+        }
 
         $validator = Validator::make($input, [
             'HoDV' => 'required',
@@ -143,6 +156,10 @@ class DoanvienController extends BaseController
     public function destroy(Doanvien $doanvien)
     {
         //
+
+        if (\Auth::user()->cannot('delete', $doanvien)) {
+            return $this->sendResponse(null, 'Khong du quyen!');
+        }
 
         $doanvien->delete();
 

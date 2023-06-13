@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\API\ChidoanController;
+use App\Http\Controllers\API\ChucvuController;
+use App\Http\Controllers\API\DoanphiController;
 use App\Http\Controllers\API\DoanvienController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,5 +26,7 @@ Route::middleware('auth:sanctum')->group( function () {
     Route::resource('sodoan', SoDoanController::class);
     Route::resource('doanvien', DoanvienController::class);
     Route::resource('chidoan', ChidoanController::class);
+    Route::resource('chucvu', ChucvuController::class);
+    Route::resource('doanphi', DoanphiController::class);
 
 });

@@ -28,8 +28,7 @@ use Illuminate\Database\Eloquent\Model;
 class Doanvien extends Model
 {
 	protected $table = 'doanvien';
-    protected $primaryKey = 'MaDV';
-
+	protected $primaryKey = 'MaDV';
 	public $incrementing = false;
 	public $timestamps = false;
 
@@ -40,7 +39,7 @@ class Doanvien extends Model
 	];
 
 	protected $fillable = [
-		'MaDV',
+        'MaDV',
 		'HoDV',
 		'TenDV',
 		'GioiTinh',

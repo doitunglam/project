@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Chidoan;
+use App\Models\Chucvu;
 use \Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Validator;
@@ -10,7 +10,7 @@ use App\Http\Controllers\API\BaseController as BaseController;
 
 
 
-class ChidoanController extends BaseController
+class ChucvuController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -19,11 +19,11 @@ class ChidoanController extends BaseController
      */
     public function index()
     {
-        if (\Auth::user()->cannot('viewAny', Chidoan::class)) {
+        if (\Auth::user()->cannot('viewAny', Chucvu::class)) {
             return $this->sendResponse(null, 'Khong du quyen!');
         }
-        $chidoan = Chidoan::all();
-        return $this->sendResponse($chidoan, 'Lay danh sach chi doan thanh cong!');
+        $chucvu = Chucvu::all();
+        return $this->sendResponse($chucvu, 'Lay danh sach chuc vu thanh cong!');
 
     }
 
@@ -46,26 +46,23 @@ class ChidoanController extends BaseController
     public function store(Request $request)
     {
         //
-        if (\Auth::user()->cannot('create', Chidoan::class)) {
+        if (\Auth::user()->cannot('create', Chucvu::class)) {
             return $this->sendResponse(null, 'Khong du quyen!');
         }
         $input = $request->all();
 
         $validator = Validator::make($input, [
-            'MaCD' => 'required',
-            'TenCD' => 'required',
-            'DiaChi' => 'required',
-            'SDT' => 'required',
-            'MaKhoa' => 'required'
+            'MaChucVu' => 'required',
+            'TenChucVu' => 'required'
         ]);
 
         if ($validator->fails()) {
             return $this->sendError('Validation Error.', $validator->errors());
         }
 
-        $chidoan = Chidoan::create($input);
+        $chucvu = Chucvu::create($input);
 
-        return $this->sendResponse(new Chidoan($input), 'Tao chi doan thanh cong.');
+        return $this->sendResponse(new $chucvu, 'Tao chuc vu thanh cong.');
 
     }
 
@@ -77,25 +74,25 @@ class ChidoanController extends BaseController
      */
     public function show($id)
     {
-        $chidoan = Chidoan::find($id);
-        if (is_null($chidoan)) {
-            return $this->sendError('Khong tim thay chi doan.');
+        $chucvu = Chucvu::find($id);
+        if (is_null($chucvu)) {
+            return $this->sendError('Khong tim thay chuc vu.');
         }
 
-        if (\Auth::user()->cannot('view', $chidoan)) {
+        if (\Auth::user()->cannot('view', $chucvu)) {
             return $this->sendResponse(null, 'Khong du quyen!');
         }
 
-        return $this->sendResponse(new Response($chidoan), 'Hien thi chi doan thanh cong.');
+        return $this->sendResponse(new Response($chucvu), 'Hien thi chuc vu thanh cong.');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Chidoan  $chidoan
+     * @param  \App\Models\Chucvu  $chucvu
      * @return \Illuminate\Http\Response
      */
-    public function edit(chidoan $chidoan)
+    public function edit(Chucvu $chucvu)
     {
         //
     }
@@ -104,53 +101,50 @@ class ChidoanController extends BaseController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Chidoan  $chidoan
+     * @param  \App\Models\Chucvu  $chucvu
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Chidoan $chidoan)
+    public function update(Request $request, Chucvu $chucvu)
     {
         //
         $input = $request->all();
 
-        if (\Auth::user()->cannot('update', $chidoan)) {
+        if (\Auth::user()->cannot('update', $chucvu)) {
             return $this->sendResponse(null, 'Khong du quyen!');
         }
 
         $validator = Validator::make($input, [
-            'TenCD' => 'required',
-            'DiaChi' => 'required',
-            'SDT' => 'required',
-            'MaKhoa' => 'required'
+            'TenChucVu' => 'required'
         ]);
 
         if ($validator->fails()) {
             return $this->sendError('Validation Error.', $validator->errors());
         }
         foreach ($input as $key => $value) {
-            $chidoan[$key] = $value;
+            $chucvu[$key] = $value;
         }
 
-        $chidoan->save();
+        $chucvu->save();
 
-        return $this->sendResponse($chidoan, 'Sua chi doan thanh cong.');
+        return $this->sendResponse($chucvu, 'Sua chuc vu thanh cong.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Chidoan  $chidoan
+     * @param  \App\Models\Chucvu  $chucvu
      * @return \Illuminate\Http\Response
      */
-    public function destroy(chidoan $chidoan)
+    public function destroy(Chucvu $chucvu)
     {
         //
 
-        if (\Auth::user()->cannot('delete', $chidoan)) {
+        if (\Auth::user()->cannot('delete', $chucvu)) {
             return $this->sendResponse(null, 'Khong du quyen!');
         }
 
-        $chidoan->delete();
+        $chucvu->delete();
 
-        return $this->sendResponse([], 'Xoa chi doan thanh cong.');
+        return $this->sendResponse([], 'Xoa chuc vu thanh cong.');
     }
 }

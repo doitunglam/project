@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Doanphi
- * 
+ *
  * @property string $MaDV
  * @property int $Nam1
  * @property int $Nam2
@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
 class Doanphi extends Model
 {
 	protected $table = 'doanphi';
+	protected $primaryKey = 'MaDV';
 	public $incrementing = false;
 	public $timestamps = false;
 

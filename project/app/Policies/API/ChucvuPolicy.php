@@ -2,11 +2,11 @@
 
 namespace App\Policies\API;
 
-use App\Models\Doanvien;
+use App\Models\Chucvu;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class DoanvienPolicy
+class ChucvuPolicy
 {
     use HandlesAuthorization;
 
@@ -18,21 +18,22 @@ class DoanvienPolicy
      */
     public function viewAny(User $user)
     {
-        // is admin or not
+        //
         return $user->Quyen === 1;
+
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Doanvien  $doanvien
+     * @param  \App\Models\Chucvu  $chucvu
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Doanvien $doanvien)
+    public function view(User $user, Chucvu $chucvu)
     {
         //
-        return $user->Quyen === 1 || $user->email === $doanvien->Email;
+        return $user->Quyen === 1;
 
     }
 
@@ -46,19 +47,20 @@ class DoanvienPolicy
     {
         //
         return $user->Quyen === 1;
+
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Doanvien  $doanvien
+     * @param  \App\Models\Chucvu  $chucvu
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Doanvien $doanvien)
+    public function update(User $user, Chucvu $chucvu)
     {
         //
-        return $user->Quyen === 1 || $user->email === $doanvien->Email;
+        return $user->Quyen === 1;
 
     }
 
@@ -66,13 +68,13 @@ class DoanvienPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Doanvien  $doanvien
+     * @param  \App\Models\Chucvu  $chucvu
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Doanvien $doanvien)
+    public function delete(User $user, Chucvu $chucvu)
     {
         //
-        return $user->Quyen === 1 ;
+        return $user->Quyen === 1;
 
     }
 
@@ -80,13 +82,13 @@ class DoanvienPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Doanvien  $doanvien
+     * @param  \App\Models\Chucvu  $chucvu
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Doanvien $doanvien)
+    public function restore(User $user, Chucvu $chucvu)
     {
         //
-        return $user->Quyen === 1 ;
+        return $user->Quyen === 1;
 
     }
 
@@ -94,13 +96,13 @@ class DoanvienPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Doanvien  $doanvien
+     * @param  \App\Models\Chucvu  $chucvu
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Doanvien $doanvien)
+    public function forceDelete(User $user, Chucvu $chucvu)
     {
         //
-        return $user->Quyen === 1 ;
+        return $user->Quyen === 1;
 
     }
 }

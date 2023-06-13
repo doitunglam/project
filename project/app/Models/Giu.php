@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Giu
- * 
+ *
  * @property string $MaDV
  * @property string $MaChucVu
  * @property Carbon $NgayNhanChuc

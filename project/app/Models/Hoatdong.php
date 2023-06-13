@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Hoatdong
- * 
+ *
  * @property string $MaHD
  * @property string $TenHD
  *
@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
 class Hoatdong extends Model
 {
 	protected $table = 'hoatdong';
+	protected $primaryKey = 'MaHD';
 	public $incrementing = false;
 	public $timestamps = false;
 

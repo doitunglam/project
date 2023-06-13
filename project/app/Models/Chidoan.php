@@ -22,14 +22,12 @@ use Illuminate\Database\Eloquent\Model;
 class Chidoan extends Model
 {
 	protected $table = 'chidoan';
+	protected $primaryKey = 'MaCD';
 	public $incrementing = false;
 	public $timestamps = false;
 
-    protected $primaryKey = 'MaCD';
-
-
 	protected $fillable = [
-		'MaCD',
+        'MaCD',
 		'TenCD',
 		'DiaChi',
 		'SDT',

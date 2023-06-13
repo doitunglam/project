@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Sinhhoat
- * 
+ *
  * @property string $MaDV
  * @property string $MaHD
  * @property Carbon $NgayBatDau
