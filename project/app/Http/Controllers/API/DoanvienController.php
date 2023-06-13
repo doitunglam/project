@@ -19,6 +19,9 @@ class DoanvienController extends BaseController
      */
     public function index()
     {
+        if (\Auth::user()->cannot('viewAny', Doanvien::class)) {
+            return $this->sendResponse(null, 'Khong du quyen!');
+        }
         $doanvien = Doanvien::all();
         return $this->sendResponse($doanvien, 'Lay danh sach doan vien thanh cong!');
 
