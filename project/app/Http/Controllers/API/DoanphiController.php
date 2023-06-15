@@ -53,10 +53,14 @@ class DoanphiController extends BaseController
 
         $validator = Validator::make($input, [
             'MaDV' => 'required',
-            'Nam1' => 'required',
-            'Nam2' => 'required',
-            'Nam3' => 'required',
-            'Nam4' => 'required'
+            'HK1' => 'required',
+            'HK2' => 'required',
+            'HK3' => 'required',
+            'HK4' => 'required',
+            'HK5' => 'required',
+            'HK6' => 'required',
+            'HK7' => 'required',
+            'HK8' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -117,10 +121,14 @@ class DoanphiController extends BaseController
         }
 
         $validator = Validator::make($input, [
-            'Nam1' => 'nullable|numeric',
-            'Nam2' => 'nullable|numeric',
-            'Nam3' => 'nullable|numeric',
-            'Nam4' => 'nullable|numeric'
+            'HK1' => 'optional|numeric',
+            'HK2' => 'optional|numeric',
+            'HK3' => 'optional|numeric',
+            'HK4' => 'optional|numeric',
+            'HK5' => 'optional|numeric',
+            'HK6' => 'optional|numeric',
+            'HK7' => 'optional|numeric',
+            'HK8' => 'optional|numeric'
         ]);
 
         if ($validator->fails()) {

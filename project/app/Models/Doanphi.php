@@ -12,10 +12,14 @@ use Illuminate\Database\Eloquent\Model;
  * Class Doanphi
  *
  * @property string $MaDV
- * @property int $Nam1
- * @property int $Nam2
- * @property int $Nam3
- * @property int $Nam4
+ * @property int $HK1
+ * @property int $HK2
+ * @property int $HK3
+ * @property int $HK4
+ * @property int $HK5
+ * @property int $HK6
+ * @property int $HK7
+ * @property int $HK8
  *
  * @package App\Models
  */
@@ -27,17 +31,25 @@ class Doanphi extends Model
 	public $timestamps = false;
 
 	protected $casts = [
-		'Nam1' => 'int',
-		'Nam2' => 'int',
-		'Nam3' => 'int',
-		'Nam4' => 'int'
+		'HK1' => 'int',
+		'HK2' => 'int',
+		'HK3' => 'int',
+		'HK4' => 'int',
+		'HK5' => 'int',
+		'HK6' => 'int',
+		'HK7' => 'int',
+		'HK8' => 'int'
 	];
 
 	protected $fillable = [
-		'MaDV',
-		'Nam1',
-		'Nam2',
-		'Nam3',
-		'Nam4'
+        'MaDV',
+		'HK1',
+		'HK2',
+		'HK3',
+		'HK4',
+		'HK5',
+		'HK6',
+		'HK7',
+		'HK8'
 	];
 }
