@@ -11,7 +11,7 @@ class sua extends Component
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(public $listcd, public $listcv, public $doanvien)
     {
         //
     }

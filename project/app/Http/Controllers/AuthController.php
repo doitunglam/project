@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Doanvien;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Laravel\Socialite\Facades\Socialite;
 use Validator;
 use App\Http\Resources\Product as ProductResource;
 
@@ -55,4 +59,49 @@ class AuthController extends BaseController
         return redirect('login');
     }
 
+
+    /**
+     * Redirect the user to the GitHub authentication page.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    /**
+     * Obtain the user information from GitHub.
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
+     */
+    public function handleGoogleCallback(Request $request)
+    {
+        //create a user using socialite driver google
+        $mailUser = Socialite::driver('google')->user();
+        // if the user exits, use that user and login
+        $email = $mailUser->email;
+
+
+        // try to get user base on the email
+        $user = Doanvien::where('Email', '=', $email)->first();
+
+        if (! isset($user)) {
+            abort(404);
+        } else {
+            $taikhoan = User::where('email', '=', $email)->first();
+
+            if (!isset($taikhoan))
+            {
+                $dulieu = ["id"=> $email, "name"=>$email, "email" => $email, "password" =>Hash::make($mailUser->getId()), "Quyen" => 0 ];
+                User::create($dulieu);
+            }
+            Auth::attempt(['email' => $email, 'password' => $mailUser->getId()]);
+            $request->session()->regenerate();
+
+            $user = Auth::user();
+            // dd($user);
+            return redirect('/');
+        }
+    }
 }

@@ -479,14 +479,18 @@ App.DoanVien = function () {
             dangXuLy = true;
             var frmData = $('#frmThemDV').serialize();
 
+            App.Site.hideAjaxLoading();
+
             $.ajax({
-                url: baseurl + 'doanvien/xulyThemDV',
+                url: baseurl + '/doanvien/them',
                 type: 'POST',
                 data: frmData,
                 dataType: 'json',
                 success: function (res) {
                     App.Site.hideAjaxLoading();
+                    res = res.data;
                     dangXuLy = false;
+                    // console.log(res);
                     if (res.status == false) {
                         $('#errThemDV').removeClass('text-success').addClass('text-danger').html(res.message).slideDown(200);
 
@@ -512,7 +516,7 @@ App.DoanVien = function () {
             var frmData = $('#frmSuaDV').serialize();
 
             $.ajax({
-                url: baseurl + 'doanvien/xulySuaDV',
+                url: baseurl + '/doanvien/sua',
                 type: 'POST',
                 data: frmData,
                 dataType: 'json',
@@ -541,13 +545,13 @@ App.DoanVien = function () {
         if (dangXuLy == false) {
             App.Site.showAjaxLoading();
             dangXuLy = true;
-
             $.ajax({
-                url: baseurl + 'doanvien/xulyXoaDV',
+                url: baseurl + '/doanvien/xoa',
                 type: 'POST',
-                data: { MADV: maDV },
+                data: { MaDV: maDV },
                 dataType: 'json',
                 success: function (res) {
+                    res = res.data;
                     App.Site.hideAjaxLoading();
                     dangXuLy = false;
                     if (res.status == false) {
@@ -560,7 +564,7 @@ App.DoanVien = function () {
                         $('#errXoaDV').removeClass('text-danger').addClass('text-success').html(res.message).slideDown(200);
 
                         setTimeout(function () {
-                            window.location.href = baseurl + 'doanvien';
+                            window.location.href = baseurl + '/doanvien';
                         }, 700);
                     }
                 }
