@@ -68,9 +68,9 @@
                                     <td class="text-center"><?php echo $item['TenCD']; ?></td>
                                     <td class="text-center"><?php echo $item['MaDV']; ?></td>
                                     <td class="text-center"><?php echo $item['HoDV']; ?> <?php echo $item['TenDV']; ?></td>
-                                    <td class="text-center"><?php echo $item['NgaySinh']; ?></td>
+                                    <td class="text-center"><?php echo date('d/m/Y', strtotime($item['NgaySinh'])); ?></td>
                                     <td class="text-center"><?php echo $item['GioiTinh']; ?></td>
-                                    <td class="text-center"><?php echo $item['NgayVaoDoan']; ?></td>
+                                    <td class="text-center"><?php echo date('d/m/Y', strtotime($item['NgayVaoDoan'])); ?></td>
                                     <td class="text-center"><?php echo $item['QueQuan']; ?></td>
                                     <td class="text-center"><?php echo $item['TenChucVu']; ?></td>
                                     <td class="text-center">

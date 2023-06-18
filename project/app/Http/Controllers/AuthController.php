@@ -78,7 +78,7 @@ class AuthController extends BaseController
     public function handleGoogleCallback(Request $request)
     {
         //create a user using socialite driver google
-        $mailUser = Socialite::driver('google')->user();
+        $mailUser = Socialite::driver('google')->stateless()->user();
         // if the user exits, use that user and login
         $email = $mailUser->email;
 
