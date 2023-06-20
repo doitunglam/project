@@ -60,9 +60,7 @@ class DoanvienController extends BaseController
     // Tao doan vien moi
     public function create(Request $request)
     {
-        if (\Auth::user()->cannot('create', Doanvien::class)) {
-            return abort(403);
-        }
+
         $input = $request->all();
 
         //validation
@@ -143,9 +141,7 @@ class DoanvienController extends BaseController
 
             $doanvien = Doanvien::where('MaDV', $input['MaDV']);
 
-            if (\Auth::user()->cannot('update', $doanvien)) {
-                return abort(403);
-            }
+
 
             $doanvien->update($input);
 
@@ -174,9 +170,6 @@ class DoanvienController extends BaseController
 
         if (isset($doanvien)) {
 
-            if (\Auth::user()->cannot('update', $doanvien)) {
-                return abort(403);
-            }
 
             return view('doanvien-sua', ['listcd' => $listCD, 'listcv' => $listCV, 'doanvien' => json_decode(json_encode($doanvien), true)]);
 
@@ -202,10 +195,6 @@ class DoanvienController extends BaseController
 
         if (isset($doanvien)) {
 
-
-            if (\Auth::user()->cannot('delete', $doanvien)) {
-                return abort(403);
-            }
             return view('doanvien-xoa', ['doanvien' => json_decode(json_encode($doanvien), true)]);
 
         } else {
@@ -234,9 +223,7 @@ class DoanvienController extends BaseController
         } else {
             $doanvien = Doanvien::where('MaDV', $input['MaDV']);
 
-            if (\Auth::user()->cannot('delete', $doanvien)) {
-                return abort(403);
-            }
+
             Giu::where('MaDV', $input['MaDV'])->delete();
 
             Doanphi::where('MaDV', $input['MaDV'])->delete();
