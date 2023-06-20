@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\DoanvienController;
 use App\Models\Chidoan;
 use App\Models\Chucvu;
 use App\Models\Doanphi;
@@ -27,6 +28,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
         Doanvien::class => DoanvienPolicy::class,
+        DoanvienController::class => DoanvienPolicy::class,
         Chidoan::class => ChidoanPolicy::class,
         Chucvu::class => ChucvuPolicy::class,
         Doanphi::class => DoanphiPolicy::class,

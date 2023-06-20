@@ -7,6 +7,8 @@ use App\Models\Chucvu;
 use App\Models\Doanphi;
 use App\Models\Doanvien;
 use App\Models\Giu;
+use App\Models\Sinhhoat;
+use App\Models\Sodoan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\Product;
@@ -21,6 +23,11 @@ class DoanvienController extends BaseController
     // Return doanphi page
     public function view(Request $request)
     {
+
+        // if (\Auth::user()->cannot('viewAny', Doanvien::class)) {
+        //     return abort(403);
+        // }
+
         $listCD = Chidoan::all();
         $listCV = Chucvu::all();
         $search = isset($request->all()['search']) ? $request->all()['search'] : "";
@@ -53,6 +60,9 @@ class DoanvienController extends BaseController
     // Tao doan vien moi
     public function create(Request $request)
     {
+        if (\Auth::user()->cannot('create', Doanvien::class)) {
+            return abort(403);
+        }
         $input = $request->all();
 
         //validation
@@ -101,6 +111,7 @@ class DoanvienController extends BaseController
     // Sua doan vien
     public function update(Request $request)
     {
+
         $input = $request->all();
 
         //validation
@@ -130,7 +141,13 @@ class DoanvienController extends BaseController
             $chucvu = ['MaDV' => $input['MaDV'], 'MaChucVu' => $input['MaChucVu']];
             unset($input['MaChucVu']);
 
-            Doanvien::where('MaDV', $input['MaDV'])->update($input);
+            $doanvien = Doanvien::where('MaDV', $input['MaDV']);
+
+            if (\Auth::user()->cannot('update', $doanvien)) {
+                return abort(403);
+            }
+
+            $doanvien->update($input);
 
             Giu::where('MaDV', $input['MaDV'])->update($chucvu);
 
@@ -157,6 +174,10 @@ class DoanvienController extends BaseController
 
         if (isset($doanvien)) {
 
+            if (\Auth::user()->cannot('update', $doanvien)) {
+                return abort(403);
+            }
+
             return view('doanvien-sua', ['listcd' => $listCD, 'listcv' => $listCV, 'doanvien' => json_decode(json_encode($doanvien), true)]);
 
         } else {
@@ -181,6 +202,10 @@ class DoanvienController extends BaseController
 
         if (isset($doanvien)) {
 
+
+            if (\Auth::user()->cannot('delete', $doanvien)) {
+                return abort(403);
+            }
             return view('doanvien-xoa', ['doanvien' => json_decode(json_encode($doanvien), true)]);
 
         } else {
@@ -207,9 +232,19 @@ class DoanvienController extends BaseController
             $response->error = $validator->errors();
             $response->status = 0;
         } else {
-            Doanvien::where('MaDV', $input['MaDV'])->delete();
+            $doanvien = Doanvien::where('MaDV', $input['MaDV']);
 
+            if (\Auth::user()->cannot('delete', $doanvien)) {
+                return abort(403);
+            }
             Giu::where('MaDV', $input['MaDV'])->delete();
+
+            Doanphi::where('MaDV', $input['MaDV'])->delete();
+            Sodoan::where('MaDV', $input['MaDV'])->delete();
+            Sinhhoat::where('MaDV', $input['MaDV'])->delete();
+
+            $doanvien->delete();
+
 
             $response->message = "Xóa đoàn viên thành công";
             $response->status = 1;
