@@ -28,7 +28,6 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
         Doanvien::class => DoanvienPolicy::class,
-        DoanvienController::class => DoanvienPolicy::class,
         Chidoan::class => ChidoanPolicy::class,
         Chucvu::class => ChucvuPolicy::class,
         Doanphi::class => DoanphiPolicy::class,

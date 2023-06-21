@@ -19,7 +19,7 @@ class DoanvienPolicy
     public function viewAny(User $user)
     {
         // is admin or not
-        return $user->Quyen === 1;
+        return $user->Quyen>=1;
     }
 
     /**
@@ -32,7 +32,7 @@ class DoanvienPolicy
     public function view(User $user, Doanvien $doanvien)
     {
         //
-        return $user->Quyen === 1 || $user->email === $doanvien->Email;
+        return $user->Quyen>=1 || $user->email === $doanvien->Email;
 
     }
 
@@ -45,7 +45,7 @@ class DoanvienPolicy
     public function create(User $user)
     {
         //
-        return $user->Quyen === 1;
+        return $user->Quyen>=1;
     }
 
     /**
@@ -58,7 +58,7 @@ class DoanvienPolicy
     public function update(User $user, Doanvien $doanvien)
     {
         //
-        return $user->Quyen === 1 || $user->email === $doanvien->Email;
+        return $user->Quyen>=1 || $user->email === $doanvien->Email;
 
     }
 
@@ -72,7 +72,7 @@ class DoanvienPolicy
     public function delete(User $user, Doanvien $doanvien)
     {
         //
-        return $user->Quyen === 1 ;
+        return $user->Quyen>=1 ;
 
     }
 
@@ -86,7 +86,7 @@ class DoanvienPolicy
     public function restore(User $user, Doanvien $doanvien)
     {
         //
-        return $user->Quyen === 1 ;
+        return $user->Quyen>=1 ;
 
     }
 
@@ -100,7 +100,7 @@ class DoanvienPolicy
     public function forceDelete(User $user, Doanvien $doanvien)
     {
         //
-        return $user->Quyen === 1 ;
+        return $user->Quyen>=1 ;
 
     }
 }

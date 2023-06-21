@@ -19,7 +19,7 @@ class DoanphiPolicy
     public function viewAny(User $user)
     {
         //
-        return $user->Quyen === 1;
+        return $user->Quyen>=1;
 
     }
 
@@ -33,7 +33,7 @@ class DoanphiPolicy
     public function view(User $user, Doanphi $doanphi)
     {
         //
-        return $user->Quyen === 1;
+        return $user->Quyen>=1;
 
     }
 
@@ -46,7 +46,7 @@ class DoanphiPolicy
     public function create(User $user)
     {
         //
-        return $user->Quyen === 1;
+        return $user->Quyen>=1;
 
     }
 
@@ -60,7 +60,7 @@ class DoanphiPolicy
     public function update(User $user, Doanphi $doanphi)
     {
         //
-        return $user->Quyen === 1;
+        return $user->Quyen>=1;
 
     }
 
@@ -74,7 +74,7 @@ class DoanphiPolicy
     public function delete(User $user, Doanphi $doanphi)
     {
         //
-        return $user->Quyen === 1;
+        return $user->Quyen>=1;
 
     }
 
@@ -88,7 +88,7 @@ class DoanphiPolicy
     public function restore(User $user, Doanphi $doanphi)
     {
         //
-        return $user->Quyen === 1;
+        return $user->Quyen>=1;
 
     }
 
@@ -102,7 +102,7 @@ class DoanphiPolicy
     public function forceDelete(User $user, Doanphi $doanphi)
     {
         //
-        return $user->Quyen === 1;
+        return $user->Quyen>=1;
 
     }
 }

@@ -19,7 +19,7 @@ class ChucvuPolicy
     public function viewAny(User $user)
     {
         //
-        return $user->Quyen === 1;
+        return $user->Quyen>=1;
 
     }
 
@@ -33,7 +33,7 @@ class ChucvuPolicy
     public function view(User $user, Chucvu $chucvu)
     {
         //
-        return $user->Quyen === 1;
+        return $user->Quyen>=1;
 
     }
 
@@ -46,7 +46,7 @@ class ChucvuPolicy
     public function create(User $user)
     {
         //
-        return $user->Quyen === 1;
+        return $user->Quyen>=1;
 
     }
 
@@ -60,7 +60,7 @@ class ChucvuPolicy
     public function update(User $user, Chucvu $chucvu)
     {
         //
-        return $user->Quyen === 1;
+        return $user->Quyen>=1;
 
     }
 
@@ -74,7 +74,7 @@ class ChucvuPolicy
     public function delete(User $user, Chucvu $chucvu)
     {
         //
-        return $user->Quyen === 1;
+        return $user->Quyen>=1;
 
     }
 
@@ -88,7 +88,7 @@ class ChucvuPolicy
     public function restore(User $user, Chucvu $chucvu)
     {
         //
-        return $user->Quyen === 1;
+        return $user->Quyen>=1;
 
     }
 
@@ -102,7 +102,7 @@ class ChucvuPolicy
     public function forceDelete(User $user, Chucvu $chucvu)
     {
         //
-        return $user->Quyen === 1;
+        return $user->Quyen>=1;
 
     }
 }

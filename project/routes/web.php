@@ -40,6 +40,4 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/doanvien/sua', [DoanvienController::class, 'update']);
     Route::get('/doanvien/xoa', [DoanvienController::class, 'viewDelete']);
     Route::post('/doanvien/xoa', [DoanvienController::class, 'delete']);
-
-
 });

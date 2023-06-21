@@ -23,16 +23,6 @@
         <div class="content-wrapper">
             @yield('content')
         </div>
-
-        {{-- <!-- Sidebar -->
-		<?php $this->load->view('partials/sidebar'); ?>
-		<!-- Content -->
-		<div class="content-wrapper">
-			<?php if (isset($mainContent)) {
-       $this->load->view($mainContent);
-   } else {
-       echo 'Chưa thiết lập views cho chức năng này.';
-   } ?> --}}
 </body>
 
 </html>

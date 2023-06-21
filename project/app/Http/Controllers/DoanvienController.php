@@ -169,15 +169,11 @@ class DoanvienController extends BaseController
         $doanvien = Doanvien::where("MaDV", '=', $maDV)->first();
 
         if (isset($doanvien)) {
-
-
             return view('doanvien-sua', ['listcd' => $listCD, 'listcv' => $listCV, 'doanvien' => json_decode(json_encode($doanvien), true)]);
-
         } else {
             abort(404);
         }
     }
-
 
     // View Delete Doanvien
     public function viewDelete(Request $request)
@@ -189,7 +185,6 @@ class DoanvienController extends BaseController
         $maDV = $input['MaDV'];
         $listCD = Chidoan::all();
         $listCV = Chucvu::all();
-
 
         $doanvien = Doanvien::where("MaDV", '=', $maDV)->first();
 
@@ -205,8 +200,6 @@ class DoanvienController extends BaseController
     // Xoa doan vien
     public function delete(Request $request)
     {
-
-
         $input = $request->all();
 
         //validation

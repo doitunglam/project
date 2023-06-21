@@ -19,7 +19,7 @@ class KhoaPolicy
     public function viewAny(User $user)
     {
         //
-        return $user->Quyen === 1 ;
+        return $user->Quyen>=1 ;
     }
 
     /**
@@ -32,7 +32,7 @@ class KhoaPolicy
     public function view(User $user, Khoa $khoa)
     {
         //
-        return $user->Quyen === 1 ;
+        return $user->Quyen>=1 ;
     }
 
     /**
@@ -44,7 +44,7 @@ class KhoaPolicy
     public function create(User $user)
     {
         //
-        return $user->Quyen === 1 ;
+        return $user->Quyen>=1 ;
     }
 
     /**
@@ -57,7 +57,7 @@ class KhoaPolicy
     public function update(User $user, Khoa $khoa)
     {
         //
-        return $user->Quyen === 1 ;
+        return $user->Quyen>=1 ;
     }
 
     /**
@@ -70,7 +70,7 @@ class KhoaPolicy
     public function delete(User $user, Khoa $khoa)
     {
         //
-        return $user->Quyen === 1 ;
+        return $user->Quyen>=1 ;
     }
 
     /**
@@ -83,7 +83,7 @@ class KhoaPolicy
     public function restore(User $user, Khoa $khoa)
     {
         //
-        return $user->Quyen === 1 ;
+        return $user->Quyen>=1 ;
     }
 
     /**
@@ -96,6 +96,6 @@ class KhoaPolicy
     public function forceDelete(User $user, Khoa $khoa)
     {
         //
-        return $user->Quyen === 1 ;
+        return $user->Quyen>=1 ;
     }
 }
